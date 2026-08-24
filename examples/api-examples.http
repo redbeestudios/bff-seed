@@ -1,0 +1,37 @@
+### BFF Seed API - usage examples
+
+### Variables
+@baseUrl = http://localhost:3000
+@email = user@example.com
+@password = MySecurePass123!
+
+### 1. Login
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "{{email}}",
+  "password": "{{password}}"
+}
+
+### 2. Refresh access token
+POST {{baseUrl}}/auth/refresh
+Content-Type: application/json
+
+{
+  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+}
+
+### 3. Logout
+POST {{baseUrl}}/auth/logout
+Content-Type: application/json
+
+{
+  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+}
+
+### 4. Health check
+GET {{baseUrl}}/health
+
+### 5. Swagger docs (non-production only)
+GET {{baseUrl}}/api

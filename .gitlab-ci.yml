@@ -1,0 +1,7 @@
+include:
+  - project: 'devsecops/gitlabci/gci-central'
+    ref: 'develop'
+    file:
+      - '/cloud/aws/pipelines/ecr-build-push.gitlab-ci.yml'
+variables:
+  SONAR_PROJECT_KEY: 'bff-seed'
