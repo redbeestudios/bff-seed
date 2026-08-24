@@ -1,6 +1,6 @@
 import { Injectable, NestMiddleware } from "@nestjs/common";
 import { Request, Response, NextFunction } from "express";
-import rateLimit from "express-rate-limit";
+import rateLimit, { ipKeyGenerator } from "express-rate-limit";
 
 @Injectable()
 export class AuthRateLimitMiddleware implements NestMiddleware {
@@ -17,7 +17,8 @@ export class AuthRateLimitMiddleware implements NestMiddleware {
     legacyHeaders: false,
     skipSuccessfulRequests: true,
     skipFailedRequests: false,
-    keyGenerator: (req: Request) => `${req.ip}-${req.get("User-Agent")}`,
+    keyGenerator: (req: Request) =>
+      `${ipKeyGenerator(req.ip)}-${req.get("User-Agent")}`,
   });
 
   use(req: Request, res: Response, next: NextFunction) {
